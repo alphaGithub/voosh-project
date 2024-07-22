@@ -8,7 +8,6 @@ class TaskService {
     try {
       const taskFilter = { userId };
       if (filter.status) taskFilter.status = filter.status;
-      console.log(taskFilter);
       const tasks = await mongoDb.Task.find(taskFilter)
         .skip(offset)
         .limit(limit);
@@ -23,7 +22,6 @@ class TaskService {
         };
       });
     } catch (error) {
-      console.log("erroor", error);
       throw new BaseError(`error in fetching task`, error);
     }
   };
@@ -32,7 +30,6 @@ class TaskService {
     { name, description, status = TASK_STATUS.PENDING }
   ) => {
     try {
-      console.log({ userId, name, description, status });
       return await mongoDb.Task.create({ userId, name, description, status });
     } catch (error) {
       throw new BaseError(`error in creating task`, error);
@@ -40,7 +37,6 @@ class TaskService {
   };
   updateTask = async (userId, taskId, payload) => {
     try {
-      console.log(userId, taskId, payload);
       return await mongoDb.Task.updateOne({ userId, _id: taskId }, payload);
     } catch (error) {
       throw new BaseError(`error in updating task`, error);
@@ -48,7 +44,6 @@ class TaskService {
   };
   deleteTask = async (userId, taskId) => {
     try {
-      console.log({ userId, _id: taskId });
       return await mongoDb.Task.deleteOne({ userId, _id: taskId });
     } catch (error) {
       throw new BaseError(`error in deleting task`, error);

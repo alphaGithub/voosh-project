@@ -27,7 +27,6 @@ class Controller {
   };
   getUser = async (req, res, next) => {
     try {
-      console.log(req.user);
       const { id } = req.user;
       const userDetails = await this.loginService.getUser(id);
       const response = new ApiResponse({
@@ -121,7 +120,6 @@ class Controller {
   };
   deleteTask = async (req, res, next) => {
     try {
-      console.log("body", req.body);
       const { id: taskId } = req.body;
       const { id } = req.user;
       const result = await this.taskService.deleteTask(id, taskId);

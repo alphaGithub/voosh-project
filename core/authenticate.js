@@ -12,7 +12,6 @@ const authMiddleWare = async (req, res, next) => {
     req.user = { id: decoded.id, email: decoded.email };
     next();
   } catch (error) {
-    console.log(error);
     next(new BaseError(`[err] user authentication failed`, error, 429));
   }
 };

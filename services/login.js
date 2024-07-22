@@ -18,7 +18,6 @@ class LoginService {
         lastName: userDetails.lastName,
       };
     } catch (error) {
-      console.log(error);
       throw new BaseError("[err] error while login!!!", error);
     }
   };
@@ -34,7 +33,6 @@ class LoginService {
         lastName: userDetails.lastName,
       };
     } catch (error) {
-      console.log(error);
       throw new BaseError("[err] error while login!!!", error);
     }
   };

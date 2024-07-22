@@ -19,7 +19,6 @@ const main = async () => {
     app.use(errorMiddleware);
     return app;
   } catch (error) {
-    console.log(error);
     throw new Error("[err] error in main!", error);
   }
 };

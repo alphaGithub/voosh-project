@@ -11,8 +11,6 @@ const errorMiddleware = (err, req, res, next) => {
   errorContext.push(`user: ${(request.user || {}).id}`);
 
   const errContextMessage = errorContext.join(" | ");
-  console.log(errContextMessage);
-  console.log(Object.keys(err), JSON.stringify(err));
   const errorResponse = new ApiResponse({
     success: false,
     data: null,

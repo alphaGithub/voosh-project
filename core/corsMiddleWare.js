@@ -5,6 +5,7 @@ const getAllowedDomains = () => {
     `127.0.0.1:${process.env.PORT}`,
     "http://localhost:3000",
     "http://localhost:3123",
+    "https://voosh-project.onrender.com",
   ];
 };
 

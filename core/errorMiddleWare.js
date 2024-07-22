@@ -18,7 +18,7 @@ const errorMiddleware = (err, req, res, next) => {
     data: null,
     message: err.message ? err.message : "Something went wrong.",
     status: err.status || httpStatus.INTERNAL_SERVER_ERROR,
-    errors: err.message || [],
+    errors: err.data || [],
   });
 
   res.status(err.status).json(errorResponse);

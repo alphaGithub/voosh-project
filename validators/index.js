@@ -77,5 +77,5 @@ exports.updateTaskValidator = [
     .withMessage("[err] invalid status"),
 ];
 exports.deleteTaskValidator = [
-  body("id").exists().isMongoId().withMessage("[err] invalid taskId required!"),
+  body("id").exists().withMessage("[err] invalid taskId required!"),
 ];

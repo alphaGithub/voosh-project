@@ -5,6 +5,7 @@ const { mongoInit } = require("./database/mongodb");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const errorMiddleware = require("./core/errorMiddleWare");
+const corsMiddleWare = require("./core/corsMiddleWare");
 
 const main = async () => {
   try {
@@ -12,6 +13,7 @@ const main = async () => {
     await mongoInit();
     app.use(express.static("public"));
     app.use(cookieParser());
+    app.use(corsMiddleWare);
     app.use(bodyParser.json({ limit: "5mb" }));
     registerRoutes(app);
     app.use(errorMiddleware);

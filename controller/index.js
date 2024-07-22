@@ -14,7 +14,6 @@ class Controller {
       const { email, password } = req.body;
       const userDetails = await this.loginService.login({ email, password });
       const token = getJWTToken(userDetails);
-      console.log(token);
       res.cookie("user", token);
       const response = new ApiResponse({
         success: !!userDetails,
@@ -26,15 +25,37 @@ class Controller {
       next(error);
     }
   };
+  getUser = async (req, res, next) => {
+    try {
+      console.log(req.user);
+      const { id } = req.user;
+      const userDetails = await this.loginService.getUser(id);
+      const response = new ApiResponse({
+        success: !!userDetails,
+        data: userDetails,
+        message: "user fetched success!",
+      });
+      res.status(response.status).json(response);
+    } catch (error) {
+      next(error);
+    }
+  };
   signUp = async (req, res, next) => {
     try {
       const { email, password, firstName, lastName } = req.body;
-      await this.loginService.signUp({ email, password, firstName, lastName });
+      const userDetails = await this.loginService.signUp({
+        email,
+        password,
+        firstName,
+        lastName,
+      });
       const response = new ApiResponse({
-        success: !!true,
-        data: {},
+        success: !!userDetails,
+        data: userDetails,
         message: "signUp success!",
       });
+      const token = getJWTToken(userDetails);
+      res.cookie("user", token);
       res.status(response.status).json(response);
     } catch (error) {
       next(error);
@@ -100,6 +121,7 @@ class Controller {
   };
   deleteTask = async (req, res, next) => {
     try {
+      console.log("body", req.body);
       const { id: taskId } = req.body;
       const { id } = req.user;
       const result = await this.taskService.deleteTask(id, taskId);

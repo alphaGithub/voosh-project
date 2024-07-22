@@ -40,6 +40,7 @@ class TaskService {
   };
   updateTask = async (userId, taskId, payload) => {
     try {
+      console.log(userId, taskId, payload);
       return await mongoDb.Task.updateOne({ userId, _id: taskId }, payload);
     } catch (error) {
       throw new BaseError(`error in updating task`, error);
@@ -47,6 +48,7 @@ class TaskService {
   };
   deleteTask = async (userId, taskId) => {
     try {
+      console.log({ userId, _id: taskId });
       return await mongoDb.Task.deleteOne({ userId, _id: taskId });
     } catch (error) {
       throw new BaseError(`error in deleting task`, error);

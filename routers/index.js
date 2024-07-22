@@ -17,6 +17,7 @@ const registerRoutes = (app) => {
   });
   app.post("/login", loginValidator, useValidation, controller.login);
   app.post("/signUp", signUpValidator, useValidation, controller.signUp);
+  app.get("/user", authMiddleWare, useValidation, controller.getUser);
   app.get(
     "/task",
     getTaskValidator,
@@ -38,8 +39,8 @@ const registerRoutes = (app) => {
     useValidation,
     controller.updateTask
   );
-  app.delete(
-    "/task",
+  app.post(
+    "/task/delete",
     deleteTaskValidator,
     authMiddleWare,
     useValidation,

@@ -30,12 +30,12 @@ exports.createTaskValidator = [
   body("name")
     .exists()
     .isString()
-    .isLength({ min: 5 })
+    .isLength({ min: 1 })
     .withMessage("[err] name required!"),
   body("description")
     .exists()
     .isString()
-    .isLength({ min: 5 })
+    .isLength({ min: 1 })
     .withMessage("[err] description required!"),
   body("status")
     .optional()
@@ -55,12 +55,12 @@ exports.updateTaskValidator = [
   body("name")
     .optional()
     .isString()
-    .isLength({ min: 5 })
+    .isLength({ min: 1 })
     .withMessage("[err] name required!"),
   body("description")
     .optional()
     .isString()
-    .isLength({ min: 5 })
+    .isLength({ min: 1 })
     .withMessage("[err] description required!"),
   body("status")
     .optional()
